@@ -4,7 +4,7 @@
 	"description": "simple script",
 	"main": "./src/index.js",
 	"bin": {
-		"autoperk": "./src/index.js
+		"autoperk": "./src/index.js,
 	"engines": {
 		"node": ">=22"
 	},
