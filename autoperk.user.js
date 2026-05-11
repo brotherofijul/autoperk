@@ -7,6 +7,8 @@
 // @match        *://m.rivalregions.com/*
 // @grant        GM_xmlhttpRequest
 // @run-at       document-idle
+// @downloadURL  https://raw.githubusercontent.com/brotherofijul/autoperk/main/autoperk.user.js
+// @updateURL    https://raw.githubusercontent.com/brotherofijul/autoperk/main/autoperk.user.js
 // ==/UserScript==
 
 (function () {
