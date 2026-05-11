@@ -6,7 +6,6 @@ Fitur:
 - Menyimpan akun otomatis dari browser
 - Auto perk Strength, Education, dan Endurance
 - Mendukung Money dan Gold
-- Interval custom
 - Auto update UserScript dari GitHub
 
 ---
@@ -17,7 +16,6 @@ Aplikasi yang dibutuhkan:
 
 - Termux
 - Via
-- UserScript Extension untuk Via
 
 Gunakan Termux dari F-Droid, bukan Play Store. Karena versi Play Store sudah tua dan ditinggalkan seperti project open source tanpa maintainer.
 
@@ -106,38 +104,20 @@ Karena server berjalan di Termux. Jika Termux mati, server ikut mati. Komputer i
 
 # Setup Via
 
-## 1. Install Via
+## Install Via
 
 Install Via dari Play Store.
 
 ---
 
-## 2. Install UserScript Extension
-
-Buka Via:
-
-```txt
-Menu → Extension
-```
-
-Cari:
-
-```txt
-UserScript
-```
-
-Lalu install.
-
----
-
 # Install UserScript
 
-## 1. Buka Menu UserScript
+## 1. Buka Pengaturan Skrip
 
-Masuk ke:
+Buka Via, lalu masuk ke:
 
 ```txt
-Via → Menu → UserScript
+Menu → Pengaturan → Skrip
 ```
 
 ---
@@ -233,7 +213,7 @@ Manusia akhirnya menemukan bahwa satu terminal tidak bisa menjalankan dua proses
 # Format Command
 
 ```bash
-autoperk -S <id> <perk> <payment> [interval]
+autoperk -S <id> <perk> <payment>
 ```
 
 ---
@@ -257,15 +237,6 @@ autoperk -S <id> <perk> <payment> [interval]
 
 ---
 
-# Interval
-
-Satuan interval menggunakan menit.
-
-Jika tidak diisi:
-- Default = 10 menit
-
----
-
 # Contoh Penggunaan
 
 ## Strength menggunakan Money
@@ -276,18 +247,18 @@ autoperk -S 123456 str m
 
 ---
 
-## Education menggunakan Gold setiap 5 menit
+## Education menggunakan Gold
 
 ```bash
-autoperk -S 123456 edu g 5
+autoperk -S 123456 edu g
 ```
 
 ---
 
-## Endurance menggunakan Money setiap 30 menit
+## Endurance menggunakan Money
 
 ```bash
-autoperk -S 123456 end m 30
+autoperk -S 123456 end m
 ```
 
 ---
