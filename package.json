@@ -3,11 +3,13 @@
 	"version": "1.0.0",
 	"description": "simple script",
 	"main": "./src/index.js",
+	"bin": {
+		"autoperk": "./src/index.js
 	"engines": {
 		"node": ">=22"
 	},
 	"scripts": {
-		"bin": "./src/index.js"
+		"start": "node ./src/index.js"
 	},
 	"keywords": [],
 	"author": "",
