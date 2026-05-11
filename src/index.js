@@ -9,13 +9,16 @@ import { DatabaseSync } from "node:sqlite";
 import { gotScraping } from "got-scraping";
 import UserAgent from "user-agents";
 
-const userAgent = new UserAgent({ deviceCategory: "mobile" });
+const userAgent = new UserAgent({
+	deviceCategory: "mobile"
+});
 
 const args = process.argv.slice(2);
 
 const DATABASE_PATH = path.resolve("./autoperk.db");
 const SERVER_PORT = 3000;
-const AUTO_PERK_INTERVAL = 10 * 60 * 1000;
+
+const AUTO_PERK_INTERVAL = 60_000;
 
 const DEFAULT_HEADERS = {
 	"User-Agent": userAgent.toString()
@@ -169,7 +172,9 @@ async function fetchAccountData(cookie) {
 
 	const idMatch = html.match(/var\s+id\s*=\s*(\d+);/);
 
-	const cHtmlMatch = html.match(/var\s+c_html\s*=\s*['"]([^'"]+)['"]/);
+	const cHtmlMatch = html.match(
+		/var\s+c_html\s*=\s*['"]([^'"]+)['"]/
+	);
 
 	if (!idMatch) {
 		throw new Error("Gagal mendapatkan player ID");
@@ -264,26 +269,30 @@ function showAccountList() {
 
 		console.log(`\nTotal Account: ${accounts.length}\n`);
 	} catch (error) {
-		console.error("Gagal mengambil account list:", error.message);
+		console.error(
+			"Gagal mengambil account list:",
+			error.message
+		);
 	}
 }
 
 async function executePerk(account, perk, payment) {
-	await gotScraping({
+	const response = await gotScraping({
 		url: `https://m.rivalregions.com/perks/up/${perk.id}/${payment.id}`,
 		method: "POST",
 		headers: {
 			...DEFAULT_HEADERS,
 			cookie: account.cookie,
 			"x-requested-with": "XMLHttpRequest",
-			"content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+			"content-type":
+				"application/x-www-form-urlencoded; charset=UTF-8"
 		},
 		body: `c=${encodeURIComponent(account.c_html)}`
 	});
-
-	console.log(
-		`[${formatTimestamp()}] Success | ${perk.name} | ${payment.name}`
-	);
+	
+	if (response.body && response.body.trim().length > 0) {
+		console.log(`[${formatTimestamp()}] upgraded | ${perk.name} | ${payment.name}`);
+	}
 }
 
 async function startAutoPerk(id, perkKey, paymentKey) {
@@ -314,14 +323,16 @@ async function startAutoPerk(id, perkKey, paymentKey) {
 	console.log("Player ID :", account.id);
 	console.log("Perk      :", perk.name);
 	console.log("Payment   :", payment.name);
-	console.log("Interval  : 10 Minutes");
+	console.log("Interval  : 1 Minute");
 	console.log("──────────────────────────────");
 
 	const run = async () => {
 		try {
 			await executePerk(account, perk, payment);
 		} catch (error) {
-			console.error(`[${formatTimestamp()}] Failed | ${error.message}`);
+			console.error(
+				`[${formatTimestamp()}] Failed | ${error.message}`
+			);
 		}
 	};
 
