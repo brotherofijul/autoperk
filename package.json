@@ -1,0 +1,21 @@
+{
+	"name": "autoperk",
+	"version": "1.0.0",
+	"description": "simple script",
+	"main": "./src/index.js",
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"bin": "./src/index.js1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"fastify": "^5.8.5",
+		"got-scraping": "^4.2.1",
+		"user-agents": "^2.1.57"
+	}
+}
