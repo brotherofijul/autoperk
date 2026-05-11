@@ -7,7 +7,7 @@
 		"node": ">=22"
 	},
 	"scripts": {
-		"bin": "./src/index.js1"
+		"bin": "./src/index.js"
 	},
 	"keywords": [],
 	"author": "",
